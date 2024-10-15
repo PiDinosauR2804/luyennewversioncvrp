@@ -1262,6 +1262,8 @@ def Neighborhood_combine_truck_and_drone_neighborhood_with_package(name_of_truck
     return potential_solution, solution_pack
 
 def Neighborhood_combine_truck_and_drone_neighborhood_with_tabu_list_with_package(name_of_truck_neiborhood, solution, number_of_potial_solution, number_of_loop_drone, tabu_list, tabu_tenure, index_of_loop, best_fitness, kind_of_tabu_structure, need_truck_time, solution_pack, solution_pack_len, use_solution_pack, index_consider_elite_set):
+    # print("-----------------------------------------")
+    # print(solution)
     potential_solution = []
     if need_truck_time:
         current_neighborhood = name_of_truck_neiborhood(solution, Function.fitness(solution)[1])
@@ -1374,10 +1376,12 @@ def Neighborhood_combine_truck_and_drone_neighborhood_with_tabu_list_with_packag
                     solution_pack.insert(num1, add_solution)
                     if len(solution_pack) > solution_pack_len:
                         solution_pack.pop()
-    restrict_next_loop = []
-    for i in range(len(potential_solution)):
-        restrict_next_loop.append(potential_solution[i][2])
-    # print("Beforrrrre:")
+        restrict_next_loop = []
+        for i in range(len(potential_solution)):
+            restrict_next_loop.append(potential_solution[i][2])
+        # print("-----", name_of_truck_neiborhood, "-----")
+        # print(potential_solution[0][0])
+    
     for i in range(len(potential_solution)):
         # print("--------")
         # print(potential_solution[i][0][0])

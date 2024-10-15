@@ -25,7 +25,7 @@ global SET_LAST_10
 global BEST
 
 # Set up chỉ số -------------------------------------------------------------------
-ITE = 1
+ITE = 5
 epsilon = (-1) * 0.00001
 # 15:   120,    20:    150
 # BREAKLOOP = Data.number_of_cities * 8
@@ -266,11 +266,11 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
             current_fitness = current_neighborhood[index_best_nei][1][index[index_best_nei]][1][0]
             current_truck_time = current_neighborhood[index_best_nei][1][index[index_best_nei]][1][1]
             current_sum_fitness = current_neighborhood[index_best_nei][1][index[index_best_nei]][1][2]
-            print("----------",i,"--------------------------")
-            print(current_sol)
-            print(current_fitness)
-            Data1.append(current_fitness)
-            Data1.append(current_sol)
+            # print("----------",i,"--------------------------")
+            # print(current_sol)
+            # print(current_fitness)
+            # Data1.append(current_fitness)
+            # Data1.append(current_sol)
             # SET_LAST_10.append([current_sol, [current_fitness, current_truck_time]])
             # if len(SET_LAST_10) > 10:
             #     SET_LAST_10.pop(0)
@@ -341,14 +341,14 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     
 def Tabu_search_for_CVRP(CC):
     Data1 = []
-    list_init = []
-    
+     
     start_time = time.time()
-    current_sol5 = Function.initial_solution7()
-    best_solution_f = current_sol5
-    best_fit_solution_f = Function.fitness(current_sol5)[0] 
-    for it in range(1, int(Data.number_of_cities/2)):
-        current_sol5 = Neighborhood.Turn_single_to_k_trip(current_sol5, it)
+    current_sol6 = Function.initial_solution7()
+    best_solution_f = current_sol6
+    best_fit_solution_f = Function.fitness(current_sol6)[0] 
+    for it in range(int(Data.number_of_cities/2)):
+        current_sol5 = Neighborhood.Turn_single_to_k_trip(current_sol6, it)
+        list_init = []
         list_init.append(current_sol5)
         print("Hehe00000000000000000000000000000")
         print(current_sol5)
@@ -378,6 +378,7 @@ def Tabu_search_for_CVRP(CC):
         # print(best_fitness)
         # print(Function.Check_if_feasible(best_sol))
         solution_pack_len = 5
+        print(current_sol)
         best_sol, best_fitness, result_print, solution_pack, Data1 = Tabu_search(init_solution=current_sol, tabu_tenure=Data.number_of_cities-1, CC=CC, first_time=True, Data1=Data1, index_consider_elite_set=0)
         for pi in range(solution_pack_len):
             # print("+++++++++++++++++++++++++",len(solution_pack),"+++++++++++++++++++++++++",)
@@ -404,13 +405,13 @@ def Tabu_search_for_CVRP(CC):
                     best_sol = best_sol1
                     best_fitness = best_fitness1
             
-            if best_fit_solution_f < best_fitness + epsilon:
+            if best_fitness < best_fit_solution_f + epsilon:
                 best_fit_solution_f = best_fitness
                 best_solution_f = best_sol
             
-            print("==================== ", it, " ============")
-            print(best_fit_solution_f)
-            print(best_solution_f)
+            # print("==================== ", it, " ============")
+            # print(best_fit_solution_f)
+            # print(best_solution_f)
             end_time = time.time()
             # if end_time - start_time > 3000:
             #     break
@@ -423,7 +424,7 @@ def Tabu_search_for_CVRP(CC):
 folder_path = "test_data\\Smith\\TSPrd(time)\\Solomon\\10"
 # Danh sách tất cả các file .txt trong thư mục
 # txt_files = glob.glob(os.path.join(folder_path, "*_2.dat"))
-txt_files = glob.glob(os.path.join(folder_path, "C101_0.5.dat"))
+txt_files = glob.glob(os.path.join(folder_path, "*.dat"))
 print(txt_files)
 
 

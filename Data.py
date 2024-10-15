@@ -10,7 +10,7 @@ import collections
 file_name = 'Result/15/C101_1-15.csv'
 file_name_csv = 'Result/result.csv'
 # file_path = "test_data\\Mine\\20x20_15.dat"
-file_path = "test_data\\Smith\\TSPrd(time)\\Solomon\\10\\RC101_3.dat"
+file_path = "test_data\\Smith\\TSPrd(time)\\Solomon\\10\\C101_0.5.dat"
 # file_path = "test_data\\Smith\\TSPrd(time)\\Solomon\\50\\0_5TSP_50\\C101_0.5.dat"
 # file_path = "test_data\\data_demand_random\\Solomon\\10\\C101_2.5.dat"
 # file_path = "test_data\\data_demand_random\\15\\R101_2.5.dat"

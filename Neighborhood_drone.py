@@ -540,7 +540,7 @@ def Neighborghood_change_drone_route_max_pro_plus(solution):
                     #print("Total: ", Total_case[ii])
                     for l in range(len(ChangePackages)):
                         # print("hehe: ", ChangePackages)
-                        #print("-----------------------------", ChangePackages)
+                        # print("-----------------------------", ChangePackages)
                         ChangePackage = ChangePackages[l]
                         #ChangePackages.append(ChangePackage)
                         #print(ChangePackage)
