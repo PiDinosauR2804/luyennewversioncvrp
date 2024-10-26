@@ -214,6 +214,8 @@ def Neighborhood_one_opt_standard(solution):
                 for l in range(len(solution[0][k])):
                     if solution[0][i][j][0] == 0:
                         continue
+                    if j == len(solution[0][i]) - 1 and solution[0][i][j-1][0] == 0:
+                        continue
                     if j + 1 < len(solution[0][i]):
                         if solution[0][i][j-1][0] == 0 and solution[0][i][j+1][0] == 0:
                             continue
@@ -281,6 +283,7 @@ def Neighborhood_one_opt_standard(solution):
                                             new_solution[1][m].pop(mm)
                                             if new_solution[1][m] == []:
                                                 new_solution[1].pop(m)
+                                                
                         for m in range(len(new_solution[0][i])):
                             city = new_solution[0][i][m][0]
                             if city in pre_drop_package:

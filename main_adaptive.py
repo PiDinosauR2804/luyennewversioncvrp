@@ -25,7 +25,7 @@ global SET_LAST_10
 global BEST
 
 # Set up chỉ số -------------------------------------------------------------------
-ITE = 5
+ITE = 1
 epsilon = (-1) * 0.00001
 # 15:   120,    20:    150
 # BREAKLOOP = Data.number_of_cities * 8
@@ -422,9 +422,10 @@ def Tabu_search_for_CVRP(CC):
 # folder_path = "test_data\\data_demand_random\\10\\"
 # folder_path = "test_data\\Smith\\TSPrd(time)\\Solomon\\50\\0_5TSP_50"
 folder_path = "test_data\\Smith\\TSPrd(time)\\Solomon\\10"
+
 # Danh sách tất cả các file .txt trong thư mục
 # txt_files = glob.glob(os.path.join(folder_path, "*_2.dat"))
-txt_files = glob.glob(os.path.join(folder_path, "*.dat"))
+txt_files = glob.glob(os.path.join(folder_path, "C101_0.5.dat"))
 print(txt_files)
 
 
