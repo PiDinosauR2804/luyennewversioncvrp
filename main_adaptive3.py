@@ -25,7 +25,7 @@ global SET_LAST_10
 global BEST
 
 # Set up chỉ số -------------------------------------------------------------------
-ITE = 1
+ITE = 5
 epsilon = (-1) * 0.00001
 # 15:   120,    20:    150
 # BREAKLOOP = Data.number_of_cities * 8
@@ -423,9 +423,9 @@ def Tabu_search_for_CVRP(CC):
 # folder_path = "test_data\\Smith\\TSPrd(time)\\Solomon\\50\\0_5TSP_50"
 # folder_path = "test_data//Smith//TSPrd(time)//Solomon//10//"
 # folder_path = "test_data//Smith//TSPrd(time)//Solomon//10//"
-folder_path = "test_data//MTVRPRDDR//Instances//"
+folder_path = "test_data//MTVRPRDDR//15//"
 # Danh sách tất cả các file .txt trong thư mục
-txt_files = glob.glob(os.path.join(folder_path, "U_10*.txt"))
+txt_files = glob.glob(os.path.join(folder_path, "U_15_0.5_Num_7.txt"))
 # txt_files = glob.glob(os.path.join(folder_path, "*.dat"))
 # Tạo một tệp Excel mới
 print(txt_files)
@@ -482,7 +482,7 @@ for txt_file in txt_files:
             if i == ITE - 1:
                 sheet.cell(row=row, column=column, value=avg_run_time)
                 sheet.cell(row=row, column=column+1, value=str(best_csv_sol))
-            workbook.save("Result/excel_result/Smith_50_test_2.xlsx")
+            workbook.save("Result/excel_result/Smith_50_test_3.xlsx")
         # Tăng dòng cho lần chạy tiếp theo
         row += 1
         log_file.close()

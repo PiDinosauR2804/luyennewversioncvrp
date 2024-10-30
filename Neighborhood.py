@@ -582,8 +582,7 @@ def findLocationForDropPackage(new_solution, index_truck, drop_package):
         new_solution[0][index_truck][0][1] += [drop_package]
         stop = True
     elif Function.max_release_date(new_solution[0][index_truck][start_][1]) * DIFFERENTIAL_RATE_RELEASE_TIME + Data.standard_deviation > \
-            Data.release_date[drop_package] and Function.min_release_date(new_solution[0][index_truck][start_][1]) * \
-            DIFFERENTIAL_RATE_RELEASE_TIME + C_ratio * Data.standard_deviation > Data.release_date[drop_package]:
+            Data.release_date[drop_package] or Data.city_demand[drop_package] > Data.drone_capacity:
         new_solution[0][index_truck][start_][1] += [drop_package] 
         stop = True
             
@@ -1663,27 +1662,37 @@ def Stack_two_truck_term(solution, index_truck, index_city):
 
         return solution
     
-    start_, end_ = Function.determine_start_end(solution, index_truck, solution[0][index_truck][index_city+1][0])
-    drop_package = []
+    pre_drop_package = []
     drop_location = []
+    for i in range(len(solution[0][index_truck][index_city][1])):
+        pre_drop_package.append(solution[0][index_truck][index_city][1][i])
+    
+    solution[0][index_truck].pop(index_city)
+    
+    start_, end_ = Function.determine_start_end(solution, index_truck, solution[0][index_truck][index_city][0])
+
     for i in reversed(range(start_, end_)):
         city = solution[0][index_truck][i][0]
-        drop_package.append(city)
+        pre_drop_package.append(city)
         if solution[0][index_truck][i][1] != []:
             drop_location.append(solution[0][index_truck][i][0])
         for j in reversed(range(len(solution[0][index_truck][i][1]))):
             city_ = solution[0][index_truck][i][1][j]
-            if city_ not in drop_package:
-                drop_package.append(city_)
-            solution[0][index_truck][i][1].pop()
-    
-    drop_package.remove(0)
-    drop_package = drop_package[::-1]
+            if city_ not in pre_drop_package:
+                pre_drop_package.append(city_)
+            solution[0][index_truck][i][1].pop()   
+
     # print("hehehee")
     # print(drop_package)
-    for i in reversed(range(len(drop_package))):
-        if drop_package[i] == 0:
-            drop_package.pop(i)
+    for i in reversed(range(len(pre_drop_package))):
+        if pre_drop_package[i] == 0:
+            pre_drop_package.pop(i)
+    
+    drop_package = []
+    for i in range(len(solution[0][index_truck])):
+        city__ = solution[0][index_truck][i][0]
+        if city__ in pre_drop_package:
+            drop_package.append(city__)
     
     for i in range(len(drop_location)):
         if drop_location[i] == 0:
@@ -1698,7 +1707,13 @@ def Stack_two_truck_term(solution, index_truck, index_city):
         if solution[1][i] == []:
             solution[1].pop(i)
     
-    solution[0][index_truck].pop(index_city)
+    
+    for i in range(len(solution[0][index_truck])):
+        for j in reversed(range(len(solution[0][index_truck][i][1]))):
+            city_ = solution[0][index_truck][i][1][j]
+            if city_ in drop_package:
+                solution[0][index_truck][i][1].pop(j)
+    
     
     for i in range(len(drop_package)):
         solution = findLocationForDropPackage(solution, index_truck, drop_package[i])
@@ -1735,6 +1750,7 @@ def Split_two_truck_term(solution, index_truck, index_city):
     solution[0][index_truck].insert(index_city + 1, [0, []])
     
     start_, end_ = Function.determine_start_end(solution, index_truck, solution[0][index_truck][index_city+2][0])
+    # print(start_, end_)
     pre_drop_package = []
     drop_location = []
     
@@ -1750,12 +1766,15 @@ def Split_two_truck_term(solution, index_truck, index_city):
             solution[0][index_truck][i][1].pop()
     
     start_1, end_1 = Function.determine_start_end(solution, index_truck, solution[0][index_truck][index_city][0])
-
-    for i in range(start_1, end_1):
+    
+    # print(start_1, end_1)
+    for i in range(len(solution[0][index_truck])):
         for j in reversed(range(len(solution[0][index_truck][i][1]))):
             city_ = solution[0][index_truck][i][1][j]
             if city_ in pre_drop_package:
                 solution[0][index_truck][i][1].pop(j)
+    
+    
     
     pre_drop_package.remove(0)
     # print(pre_drop_package)

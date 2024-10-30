@@ -298,6 +298,11 @@ def Neighborhood_one_opt_standard(solution):
                         new_solution = Neighborhood.findLocationForDropPackage(new_solution, k, city_change)
                         # print(new_solution)
                         # print(Function.Check_if_feasible(new_solution))
+                        print("------------------")
+                        print(new_solution)
+                        print(new_solution[0][0])
+                        print(new_solution[0][1])
+                        print(new_solution[1])
                         pack_child = []
                         pack_child.append(new_solution)
                         a, b, c = Function.fitness(new_solution)

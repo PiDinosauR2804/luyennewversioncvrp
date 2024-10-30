@@ -31,29 +31,35 @@ solution = [[[[0, [1]], [6, [6, 9, 8, 10]], [9, []], [8, []], [10, []], [7, [7, 
               [0, []]]], 
             [[[6, [6, 9, 8, 10]]], [[7, [7, 2, 4, 3]]]]]
 
-solution2 = [[[[0, []], [9, [9]]], 
-              [[0, []], [10, [10, 3]], [5, [5, 6]], [6, []], [3, []], [4, [4, 1]], [7, [7]], [1, []], [0, []], [8, [8]], [2, [2]]]], 
-             [[[9, [9]]], [[10, [10, 3]]], [[5, [5, 6]]], [[4, [4, 1]]], [[7, [7]]], [[8, [8]]], [[2, [2]]]]]
+solution2 = [[[[0, [2, 14]], [14, []], [2, []], [11, [11, 5]], [5, [14]], [3, [3, 9]], [9, []], [15, [15, 7, 13, 1]], [13, []], [1, []], [7, []]], 
+              [[0, []], [4, [10, 4]], [10, []], [8, [8, 12, 6]], [6, []], [12, []]]], 
+             [[[4, [10, 4]]], [[11, [11, 5]]], [[8, [6]]], [[8, [8, 12]]], [[3, [3, 9]]], [[15, [7, 13]]], [[15, [15, 1]]]]]
 
-solution3 = [[[[0, []], [3, [3, 9]], [5, [5, 8]], [7, [7, 4]], [9, []], [8, []], [4, []]], [[0, []], [10, [10]], [6, [6]], [1, [1, 2]], [2, []]]], [[[10, [10]]], [[3, [3, 9]]], [[6, [6]]], [[5, [5, 8]]], [[7, [7, 4]]], [[1, [1, 2]]]]]
+solution3 = [[[[0, [2, 14]], [2, []], [11, [11, 5]], [5, [14]], [3, [3, 9]], [9, []], [15, [15, 7, 13, 1]], [13, []], [1, []], [7, []], [14, []]], 
+              [[0, []], [4, [10, 4]], [10, []], [8, [8, 12, 6]], [6, []], [12, []]]], 
+             [[[4, [10, 4]]], [[11, [11, 5]]], [[8, [6]]], [[5, [14]]], [[8, [8, 12]]], [[3, [3, 9]]], [[15, [7, 13]]], [[15, [15, 1]]]]]
 
 # print(Function.max_release_date([6]))
 # print(Data.manhattan_move_matrix[4][7])
 # print(Data.manhattan_move_matrix[10][3])
 # print(Data.euclid_flight_matrix[0][5])
 
-
+# a, b = Function.determine_start_end(solution3, 1, solution[0][index_truck][index_city+2][0])
 
 # # print(Data.city[10])
 
 # print("-----------------")
-print(Function.fitness(solution3)[0])
-print(Function.fitness(solution3)[1][0])
-print(Function.fitness(solution3)[1][1])
+print(Function.fitness(solution2)[0])
+# print(Function.fitness(solution3)[1][0])
+# print(Function.fitness(solution3)[1][1])
 
 
 # Nei=Neighborhood10.Neighborhood_one_opt_standard(solution3)
-# Nei = Neighborhood.swap_two_array(solution2)
+
+# sol = Neighborhood.Split_two_truck_term(solution3, 1, 5)
+# print(sol[0][1])
+
+# Nei = Neighborhood.Neighborhood_split_two_truck_term(solution3)
 # print(Nei[0][0])
 # for i in range(len(Nei)):
 #         print("-----------------------", i)
